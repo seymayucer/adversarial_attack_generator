@@ -151,10 +151,11 @@ class BaseAttack:
             f.write(f"\nResult for {self.attack_name} attack\n")
             f.write(f"Original Class Confidence: {orig_conf:.4f}\n")
             f.write(f"Adversarial Class Confidence: {adv_conf:.4f}\n")
-            f.write(
-                f"Target Category: {self.weights.meta["categories"][target_class]}\n"
-            )
-            f.write(f"Target Class: {target_class} \n\n")
+            if self.target:
+                f.write(
+                    f"Target Category: {self.weights.meta["categories"][target_class]}\n"
+                )
+                f.write(f"Target Class: {target_class} \n\n")
             f.write(f"Output files saved in {filepath.parent}.\n")
 
     def _update_inputs(
