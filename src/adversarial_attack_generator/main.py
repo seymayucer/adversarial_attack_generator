@@ -18,7 +18,7 @@ def main():
         type=str,
         required=True,
         choices=SUPPORTED_MODELS,
-        help="Name of the target model to attack (e.g., resnet50, vgg16)",
+        help=f"Name of the target model to attack (e.g., {SUPPORTED_MODELS})",
         metavar="MODEL",
     )
     parser.add_argument(
@@ -40,7 +40,7 @@ def main():
         type=str,
         required=True,
         choices=list(ATTACK_MAPPING.keys()),
-        help="Type of adversarial attack to perform (e.g., FGSM, PGD)",
+        help=f"Type of adversarial attack to perform (e.g., {list(ATTACK_MAPPING.keys())})",
         metavar="ATTACK",
     )
     parser.add_argument(
