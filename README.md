@@ -36,7 +36,16 @@ This library implements various adversarial attack methods to generate examples 
 
 ## Usage
 
+### Using `uvx`
+
+```bash
+
+uvx --from git+https://github.com/seymayucer/adversarial_attack_generator.git adversarial-attack --help
+
+```
+
 ### Using `uv`
+
 
 ```bash
 uv run adversarial-attack --model_name regnet_y_128gf --input_image ../adversarial_attack_generar/assets/input.png --output_path output/ --target_class 532 --attack_method TGR
