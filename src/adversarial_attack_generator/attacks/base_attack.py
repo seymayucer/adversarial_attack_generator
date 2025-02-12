@@ -152,10 +152,10 @@ class BaseAttack:
             f.write(f"Original Class Confidence: {orig_conf:.4f}\n")
             f.write(f"Adversarial Class Confidence: {adv_conf:.4f}\n")
             f.write(
-                f"Target Category: {self.weights.meta["categories"][target_class]} \n\n"
+                f"Target Category: {self.weights.meta["categories"][target_class]}\n"
             )
             f.write(f"Target Class: {target_class} \n\n")
-            f.write("Output images saved in the same directory.\n")
+            f.write(f"Output files saved in {filepath.parent}.\n")
 
     def _update_inputs(
         self, inputs: torch.Tensor, grad: torch.Tensor, step_size: float
