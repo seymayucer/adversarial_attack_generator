@@ -7,8 +7,22 @@ authors = [
     { name = "seymayucer", email = "seymayucer@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.10.0",
+    "numpy>=2.2.2",
+    "pillow>=11.1.0",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+]
+
+[project.scripts]
+adversarial-attack = "adversarial_attack_generator.main:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.6",
+]
