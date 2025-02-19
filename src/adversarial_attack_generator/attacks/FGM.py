@@ -12,14 +12,13 @@ class FGM(BaseAttack):
     def __init__(
         self,
         model_name: str,
-        epsilon: float = 0.1,
+        epsilon: float = 0.05,
         eps_step: float = 0.001,
         target: bool = False,
         clip_values: Optional[Tuple[float, float]] = None,
-        max_iter: int = 500,
+        max_iter: int = 100,
     ) -> None:
         """Initialize FGM attack.
-
         Args:
             model_name: Name of the model to attack
             epsilon: Maximum perturbation magnitude
@@ -53,7 +52,6 @@ class FGM(BaseAttack):
 
     def _clip_values(self, x_adv: torch.Tensor) -> torch.Tensor:
         """Clip values to valid pixel range.
-
         Args:
             x_adv: Adversarial examples to clip
 
@@ -63,7 +61,7 @@ class FGM(BaseAttack):
         if self.clip_values is not None:
             clip_min, clip_max = self.clip_values
             return torch.clamp(x_adv, min=clip_min, max=clip_max)
-        return torch.clamp(x_adv, min=0, max=1)
+        return x_adv
 
     def _check_attack_success(
         self, predictions: torch.Tensor, labels: torch.Tensor

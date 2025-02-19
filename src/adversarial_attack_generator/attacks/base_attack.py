@@ -118,9 +118,11 @@ class BaseAttack:
         adv_img = self._prepare_image_for_saving(unnorm_adv)
         Image.fromarray(adv_img).save(sample_dir / f"{filename}_adversarial.png")
 
-        # Save noise visualization
-        noise = torch.abs(unnorm_adv - unnorm_orig)
-        noise = self._prepare_image_for_saving(noise, normalize=True)
+        # Modified noise visualization
+        noise = unnorm_adv - unnorm_orig
+        # Scale noise to better visualize small perturbations
+        noise = (noise - noise.min()) / (noise.max() - noise.min())
+        noise = self._prepare_image_for_saving(noise)
         Image.fromarray(noise).save(sample_dir / f"{filename}_noise.png")
 
         # Save analysis
